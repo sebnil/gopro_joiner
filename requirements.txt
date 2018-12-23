@@ -1,1 +1,9 @@
+# python bindings to ffmpeg
 ffmpeg-python
+
+# test runner
+nose
+
+# static code analysis
+flake8
+pylint

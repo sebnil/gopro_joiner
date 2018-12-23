@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="1" errors="1" failures="0" skip="0"><testcase classname="nose.failure.Failure" name="runTest" time="0.001"><error type="builtins.ModuleNotFoundError" message="No module named 'ffmpeg'"><![CDATA[Traceback (most recent call last):
+  File "C:\Users\sebni\Anaconda3\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+  File "C:\Users\sebni\Anaconda3\lib\unittest\case.py", line 615, in run
+    testMethod()
+  File "C:\Users\sebni\Anaconda3\lib\site-packages\nose\failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "C:\Users\sebni\Anaconda3\lib\site-packages\nose\loader.py", line 417, in loadTestsFromName
+    addr.filename, addr.module)
+  File "C:\Users\sebni\Anaconda3\lib\site-packages\nose\importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "C:\Users\sebni\Anaconda3\lib\site-packages\nose\importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "C:\Users\sebni\Anaconda3\lib\imp.py", line 235, in load_module
+    return load_source(name, filename, file)
+  File "C:\Users\sebni\Anaconda3\lib\imp.py", line 172, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 696, in _load
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "C:\ProjectArea\gopro_joiner\tests\test_ffmpeg.py", line 2, in <module>
+    import ffmpeg
+ModuleNotFoundError: No module named 'ffmpeg'
+]]></error></testcase></testsuite>
