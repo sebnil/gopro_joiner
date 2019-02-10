@@ -62,18 +62,7 @@ pipeline {
                 bat "activate ${venvName} && pylint tests --rcfile=./pylintrc > pylint.log | EXIT 0"
 
                 // publish analysis from both flake8 and pylint
-                step([$class: 'WarningsPublisher',
-                    parserConfigurations: [
-                        [
-                            parserName: 'Pep8',
-                            pattern: 'flake8.log'
-                        ],
-                        [
-                            parserName: 'pylint',
-                            pattern: 'pylint.log'
-                        ]
-                    ],
-                ])
+                recordIssues enabledForFailure: true, tools: [pep8(pattern: 'flake8.log'), pyLint(pattern: 'pylint.log')]
             }
         }
     }
