@@ -3,7 +3,12 @@ from collections import OrderedDict
 import os
 import sys
 import ffmpeg
+import argparse
 
+parser = argparse.ArgumentParser(description='Combine and compress GoPro videos into one video.')
+parser.add_argument('folder')
+parser.add_argument('--scale', default=None, help='hd720, hd1080, 2k, 4k')
+parser.add_argument('--fps', default=None, help='hd720, hd1080, 2k, 4k')
 
 class FileRepresentation:
     prefix = None
@@ -19,7 +24,7 @@ class FileRepresentation:
 
 class Joiner:
     @staticmethod
-    def combine_compress_and_rename_videos_in_folder(folder=None):
+    def combine_compress_and_rename_videos_in_folder(folder=None, scale=None, fps=None):
         if folder is None:
             print('No folder. return.')
             return
@@ -86,8 +91,11 @@ class Joiner:
             d = {'a': 1, 'v': 1}
             joined = ffmpeg.concat(*ffmpeg_inputs, **d)
 
-            joined = ffmpeg.filter(joined, 'scale', size='hd720', force_original_aspect_ratio='decrease')
-            joined = ffmpeg.filter(joined, 'fps', fps=25, round='up')
+            if scale is not None:
+                joined = ffmpeg.filter(joined, 'scale', size=scale, force_original_aspect_ratio='decrease')
+
+            if fps is not None:
+                joined = ffmpeg.filter(joined, 'fps', fps=fps, round='up')
 
             dic = organized[unique_video_key][0]
             out_path = dic.folder + '/' + dic.prefix + dic.video_number + '_combined.mp4'
@@ -96,4 +104,7 @@ class Joiner:
 
 
 if __name__ == '__main__':
-    Joiner.combine_compress_and_rename_videos_in_folder(sys.argv[1])
+    parser.print_help()
+
+    args = parser.parse_args()
+    Joiner.combine_compress_and_rename_videos_in_folder(args.folder, args.scale, args.fps)
