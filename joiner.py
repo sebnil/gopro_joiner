@@ -43,7 +43,7 @@ class Joiner:
                     video_number = regex_match.group(2)
                     chapter = regex_match.group(3)
                 else:
-                    regex_match = re.match(r"(GP|GH|GX)(\d{2})(\d{4})\.mp4", file, re.I)
+                    regex_match = re.match(r"(GP|GH|GX|GS)(\d{2})(\d{4})\.mp4", file, re.I)
 
                     if regex_match:
                         print('matched regex 2')
